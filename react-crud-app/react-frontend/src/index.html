@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title
+
+
+        version: '3'
+        services:
+        database:
+        image: postgres
+        environment:
+        POSTGRES_PASSWORD: password
+        POSTGRES_DB: employeeapp
+        volumes:
+        - database-data:/var/lib/postgresql/data/
+        ports:
+        - 5432:5432
+
+        employeeapp:
+        image: employeeapp
+        environment:
+        EMPLOYEEAPP_DB_HOST: database
+        ports:
+        - 8080:8080
+        depends_on:
+        - database
+
+        volumes:
+        database-data:
+        driver: local
+
+
+
+    </title>
+</head>
+<body>
+
+</body>
+</html>
